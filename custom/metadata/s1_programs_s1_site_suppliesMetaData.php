@@ -13,12 +13,12 @@ $dictionary["s1_programs_s1_site_supplies"] = array (
       'rhs_table' => 's1_site_supplies',
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
-      'join_table' => 's1_programsite_supplies_c',
-      'join_key_lhs' => 's1_programec2brograms_ida',
-      'join_key_rhs' => 's1_program2546upplies_idb',
+      'join_table' => 's1_programs_s1_site_supplies_c',
+      'join_key_lhs' => 's1_programs_s1_site_suppliess1_programs_ida',
+      'join_key_rhs' => 's1_programs_s1_site_suppliess1_site_supplies_idb',
     ),
   ),
-  'table' => 's1_programsite_supplies_c',
+  'table' => 's1_programs_s1_site_supplies_c',
   'fields' => 
   array (
     0 => 
@@ -42,13 +42,13 @@ $dictionary["s1_programs_s1_site_supplies"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_programec2brograms_ida',
+      'name' => 's1_programs_s1_site_suppliess1_programs_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_program2546upplies_idb',
+      'name' => 's1_programs_s1_site_suppliess1_site_supplies_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,7 +70,7 @@ $dictionary["s1_programs_s1_site_supplies"] = array (
       'type' => 'index',
       'fields' => 
       array (
-        0 => 's1_programec2brograms_ida',
+        0 => 's1_programs_s1_site_suppliess1_programs_ida',
       ),
     ),
     2 => 
@@ -79,7 +79,7 @@ $dictionary["s1_programs_s1_site_supplies"] = array (
       'type' => 'index',
       'fields' => 
       array (
-        0 => 's1_program2546upplies_idb',
+        0 => 's1_programs_s1_site_suppliess1_site_supplies_idb',
       ),
     ),
   ),

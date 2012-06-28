@@ -13,12 +13,12 @@ $dictionary["s1_events_s1_report_cards"] = array (
       'rhs_table' => 's1_report_cards',
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
-      'join_table' => 's1_events_sreport_cards_c',
-      'join_key_lhs' => 's1_events_2680_events_ida',
-      'join_key_rhs' => 's1_events_f380t_cards_idb',
+      'join_table' => 's1_events_s1_report_cards_c',
+      'join_key_lhs' => 's1_events_s1_report_cardss1_events_ida',
+      'join_key_rhs' => 's1_events_s1_report_cardss1_report_cards_idb',
     ),
   ),
-  'table' => 's1_events_sreport_cards_c',
+  'table' => 's1_events_s1_report_cards_c',
   'fields' => 
   array (
     0 => 
@@ -42,13 +42,13 @@ $dictionary["s1_events_s1_report_cards"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_events_2680_events_ida',
+      'name' => 's1_events_s1_report_cardss1_events_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_events_f380t_cards_idb',
+      'name' => 's1_events_s1_report_cardss1_report_cards_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,7 +70,7 @@ $dictionary["s1_events_s1_report_cards"] = array (
       'type' => 'index',
       'fields' => 
       array (
-        0 => 's1_events_2680_events_ida',
+        0 => 's1_events_s1_report_cardss1_events_ida',
       ),
     ),
     2 => 
@@ -79,7 +79,7 @@ $dictionary["s1_events_s1_report_cards"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_events_f380t_cards_idb',
+        0 => 's1_events_s1_report_cardss1_report_cards_idb',
       ),
     ),
   ),

@@ -13,12 +13,12 @@ $dictionary["s1_programs_s1_report_card_questions"] = array (
       'rhs_table' => 's1_report_card_questions',
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
-      'join_table' => 's1_programsrd_questions_c',
-      'join_key_lhs' => 's1_programf15drograms_ida',
-      'join_key_rhs' => 's1_program2e03estions_idb',
+      'join_table' => 's1_programs_s1_report_card_questions_c',
+      'join_key_lhs' => 's1_programs_s1_report_card_questionss1_programs_ida',
+      'join_key_rhs' => 's1_programs_s1_report_card_questionss1_report_card_questions_idb',
     ),
   ),
-  'table' => 's1_programsrd_questions_c',
+  'table' => 's1_programs_s1_report_card_questions_c',
   'fields' => 
   array (
     0 => 
@@ -42,13 +42,13 @@ $dictionary["s1_programs_s1_report_card_questions"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_programf15drograms_ida',
+      'name' => 's1_programs_s1_report_card_questionss1_programs_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_program2e03estions_idb',
+      'name' => 's1_programs_s1_report_card_questionss1_report_card_questions_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,8 +70,8 @@ $dictionary["s1_programs_s1_report_card_questions"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_programf15drograms_ida',
-        1 => 's1_program2e03estions_idb',
+        0 => 's1_programs_s1_report_card_questionss1_programs_ida',
+        1 => 's1_programs_s1_report_card_questionss1_report_card_questions_idb',
       ),
     ),
   ),

@@ -14,8 +14,8 @@ $dictionary["s1_sites_s1_blackouts"] = array (
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
       'join_table' => 's1_sites_s1_blackouts_c',
-      'join_key_lhs' => 's1_sites_scc5e1_sites_ida',
-      'join_key_rhs' => 's1_sites_s38feackouts_idb',
+      'join_key_lhs' => 's1_sites_s1_blackoutss1_sites_ida',
+      'join_key_rhs' => 's1_sites_s1_blackoutss1_blackouts_idb',
     ),
   ),
   'table' => 's1_sites_s1_blackouts_c',
@@ -42,13 +42,13 @@ $dictionary["s1_sites_s1_blackouts"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_sites_scc5e1_sites_ida',
+      'name' => 's1_sites_s1_blackoutss1_sites_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_sites_s38feackouts_idb',
+      'name' => 's1_sites_s1_blackoutss1_blackouts_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,7 +70,7 @@ $dictionary["s1_sites_s1_blackouts"] = array (
       'type' => 'index',
       'fields' => 
       array (
-        0 => 's1_sites_scc5e1_sites_ida',
+        0 => 's1_sites_s1_blackoutss1_sites_ida',
       ),
     ),
     2 => 
@@ -79,7 +79,7 @@ $dictionary["s1_sites_s1_blackouts"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_sites_s38feackouts_idb',
+        0 => 's1_sites_s1_blackoutss1_blackouts_idb',
       ),
     ),
   ),

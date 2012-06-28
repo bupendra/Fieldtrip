@@ -13,12 +13,12 @@ $dictionary["s1_programs_s1_blackouts"] = array (
       'rhs_table' => 's1_blackouts',
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
-      'join_table' => 's1_programss1_blackouts_c',
-      'join_key_lhs' => 's1_program020brograms_ida',
-      'join_key_rhs' => 's1_program9ab3ackouts_idb',
+      'join_table' => 's1_programs_s1_blackouts_c',
+      'join_key_lhs' => 's1_programs_s1_blackoutss1_programs_ida',
+      'join_key_rhs' => 's1_programs_s1_blackoutss1_blackouts_idb',
     ),
   ),
-  'table' => 's1_programss1_blackouts_c',
+  'table' => 's1_programs_s1_blackouts_c',
   'fields' => 
   array (
     0 => 
@@ -42,13 +42,13 @@ $dictionary["s1_programs_s1_blackouts"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_program020brograms_ida',
+      'name' => 's1_programs_s1_blackoutss1_programs_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_program9ab3ackouts_idb',
+      'name' => 's1_programs_s1_blackoutss1_blackouts_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,7 +70,7 @@ $dictionary["s1_programs_s1_blackouts"] = array (
       'type' => 'index',
       'fields' => 
       array (
-        0 => 's1_program020brograms_ida',
+        0 => 's1_programs_s1_blackoutss1_programs_ida',
       ),
     ),
     2 => 
@@ -79,7 +79,7 @@ $dictionary["s1_programs_s1_blackouts"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_program9ab3ackouts_idb',
+        0 => 's1_programs_s1_blackoutss1_blackouts_idb',
       ),
     ),
   ),

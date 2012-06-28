@@ -14,8 +14,8 @@ $dictionary["s1_programs_s1_sites"] = array (
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
       'join_table' => 's1_programs_s1_sites_c',
-      'join_key_lhs' => 's1_program0baerograms_ida',
-      'join_key_rhs' => 's1_programe72f1_sites_idb',
+      'join_key_lhs' => 's1_programs_s1_sitess1_programs_ida',
+      'join_key_rhs' => 's1_programs_s1_sitess1_sites_idb',
     ),
   ),
   'table' => 's1_programs_s1_sites_c',
@@ -42,13 +42,13 @@ $dictionary["s1_programs_s1_sites"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_program0baerograms_ida',
+      'name' => 's1_programs_s1_sitess1_programs_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_programe72f1_sites_idb',
+      'name' => 's1_programs_s1_sitess1_sites_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,8 +70,8 @@ $dictionary["s1_programs_s1_sites"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_program0baerograms_ida',
-        1 => 's1_programe72f1_sites_idb',
+        0 => 's1_programs_s1_sitess1_programs_ida',
+        1 => 's1_programs_s1_sitess1_sites_idb',
       ),
     ),
   ),

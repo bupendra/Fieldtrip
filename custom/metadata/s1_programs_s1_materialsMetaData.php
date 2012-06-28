@@ -13,12 +13,12 @@ $dictionary["s1_programs_s1_materials"] = array (
       'rhs_table' => 's1_materials',
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
-      'join_table' => 's1_programss1_materials_c',
-      'join_key_lhs' => 's1_programfd5erograms_ida',
-      'join_key_rhs' => 's1_program67b9terials_idb',
+      'join_table' => 's1_programs_s1_materials_c',
+      'join_key_lhs' => 's1_programs_s1_materialss1_programs_ida',
+      'join_key_rhs' => 's1_programs_s1_materialss1_materials_idb',
     ),
   ),
-  'table' => 's1_programss1_materials_c',
+  'table' => 's1_programs_s1_materials_c',
   'fields' => 
   array (
     0 => 
@@ -42,13 +42,13 @@ $dictionary["s1_programs_s1_materials"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_programfd5erograms_ida',
+      'name' => 's1_programs_s1_materialss1_programs_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_program67b9terials_idb',
+      'name' => 's1_programs_s1_materialss1_materials_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,7 +70,7 @@ $dictionary["s1_programs_s1_materials"] = array (
       'type' => 'index',
       'fields' => 
       array (
-        0 => 's1_programfd5erograms_ida',
+        0 => 's1_programs_s1_materialss1_programs_ida',
       ),
     ),
     2 => 
@@ -79,7 +79,7 @@ $dictionary["s1_programs_s1_materials"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_program67b9terials_idb',
+        0 => 's1_programs_s1_materialss1_materials_idb',
       ),
     ),
   ),

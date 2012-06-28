@@ -14,8 +14,8 @@ $dictionary["s1_chains_s1_materials"] = array (
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
       'join_table' => 's1_chains_s1_materials_c',
-      'join_key_lhs' => 's1_chains_a5e4_chains_ida',
-      'join_key_rhs' => 's1_chains_ec90terials_idb',
+      'join_key_lhs' => 's1_chains_s1_materialss1_chains_ida',
+      'join_key_rhs' => 's1_chains_s1_materialss1_materials_idb',
     ),
   ),
   'table' => 's1_chains_s1_materials_c',
@@ -42,13 +42,13 @@ $dictionary["s1_chains_s1_materials"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_chains_a5e4_chains_ida',
+      'name' => 's1_chains_s1_materialss1_chains_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_chains_ec90terials_idb',
+      'name' => 's1_chains_s1_materialss1_materials_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,7 +70,7 @@ $dictionary["s1_chains_s1_materials"] = array (
       'type' => 'index',
       'fields' => 
       array (
-        0 => 's1_chains_a5e4_chains_ida',
+        0 => 's1_chains_s1_materialss1_chains_ida',
       ),
     ),
     2 => 
@@ -79,7 +79,7 @@ $dictionary["s1_chains_s1_materials"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_chains_ec90terials_idb',
+        0 => 's1_chains_s1_materialss1_materials_idb',
       ),
     ),
   ),

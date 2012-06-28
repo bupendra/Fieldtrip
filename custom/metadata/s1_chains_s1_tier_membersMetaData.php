@@ -13,12 +13,12 @@ $dictionary["s1_chains_s1_tier_members"] = array (
       'rhs_table' => 's1_tier_members',
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
-      'join_table' => 's1_chains_stier_members_c',
-      'join_key_lhs' => 's1_chains_282c_chains_ida',
-      'join_key_rhs' => 's1_chains_c823members_idb',
+      'join_table' => 's1_chains_s1_tier_members_c',
+      'join_key_lhs' => 's1_chains_s1_tier_memberss1_chains_ida',
+      'join_key_rhs' => 's1_chains_s1_tier_memberss1_tier_members_idb',
     ),
   ),
-  'table' => 's1_chains_stier_members_c',
+  'table' => 's1_chains_s1_tier_members_c',
   'fields' => 
   array (
     0 => 
@@ -42,13 +42,13 @@ $dictionary["s1_chains_s1_tier_members"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_chains_282c_chains_ida',
+      'name' => 's1_chains_s1_tier_memberss1_chains_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_chains_c823members_idb',
+      'name' => 's1_chains_s1_tier_memberss1_tier_members_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,7 +70,7 @@ $dictionary["s1_chains_s1_tier_members"] = array (
       'type' => 'index',
       'fields' => 
       array (
-        0 => 's1_chains_282c_chains_ida',
+        0 => 's1_chains_s1_tier_memberss1_chains_ida',
       ),
     ),
     2 => 
@@ -79,7 +79,7 @@ $dictionary["s1_chains_s1_tier_members"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_chains_c823members_idb',
+        0 => 's1_chains_s1_tier_memberss1_tier_members_idb',
       ),
     ),
   ),

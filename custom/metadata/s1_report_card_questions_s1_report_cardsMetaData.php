@@ -13,12 +13,12 @@ $dictionary["s1_report_card_questions_s1_report_cards"] = array (
       'rhs_table' => 's1_report_cards',
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
-      'join_table' => 's1_report_creport_cards_c',
+      'join_table' => 's1_report_card_questions_s1_report_cards_c',
       'join_key_lhs' => 's1_report_76c9estions_ida',
-      'join_key_rhs' => 's1_report_0f26t_cards_idb',
+      'join_key_rhs' => 's1_report_card_questions_s1_report_cardss1_report_cards_idb',
     ),
   ),
-  'table' => 's1_report_creport_cards_c',
+  'table' => 's1_report_card_questions_s1_report_cards_c',
   'fields' => 
   array (
     0 => 
@@ -48,7 +48,7 @@ $dictionary["s1_report_card_questions_s1_report_cards"] = array (
     ),
     4 => 
     array (
-      'name' => 's1_report_0f26t_cards_idb',
+      'name' => 's1_report_card_questions_s1_report_cardss1_report_cards_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -79,7 +79,7 @@ $dictionary["s1_report_card_questions_s1_report_cards"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_report_0f26t_cards_idb',
+        0 => 's1_report_card_questions_s1_report_cardss1_report_cards_idb',
       ),
     ),
   ),

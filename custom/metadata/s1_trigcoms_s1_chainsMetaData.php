@@ -14,8 +14,8 @@ $dictionary["s1_trigcoms_s1_chains"] = array (
       'rhs_key' => 'id',
       'relationship_type' => 'many-to-many',
       'join_table' => 's1_trigcoms_s1_chains_c',
-      'join_key_lhs' => 's1_trigcomf87d_chains_ida',
-      'join_key_rhs' => 's1_trigcom9b0drigcoms_idb',
+      'join_key_lhs' => 's1_trigcoms_s1_chainss1_chains_ida',
+      'join_key_rhs' => 's1_trigcoms_s1_chainss1_trigcoms_idb',
     ),
   ),
   'table' => 's1_trigcoms_s1_chains_c',
@@ -42,13 +42,13 @@ $dictionary["s1_trigcoms_s1_chains"] = array (
     ),
     3 => 
     array (
-      'name' => 's1_trigcomf87d_chains_ida',
+      'name' => 's1_trigcoms_s1_chainss1_chains_ida',
       'type' => 'varchar',
       'len' => 36,
     ),
     4 => 
     array (
-      'name' => 's1_trigcom9b0drigcoms_idb',
+      'name' => 's1_trigcoms_s1_chainss1_trigcoms_idb',
       'type' => 'varchar',
       'len' => 36,
     ),
@@ -70,7 +70,7 @@ $dictionary["s1_trigcoms_s1_chains"] = array (
       'type' => 'index',
       'fields' => 
       array (
-        0 => 's1_trigcomf87d_chains_ida',
+        0 => 's1_trigcoms_s1_chainss1_chains_ida',
       ),
     ),
     2 => 
@@ -79,7 +79,7 @@ $dictionary["s1_trigcoms_s1_chains"] = array (
       'type' => 'alternate_key',
       'fields' => 
       array (
-        0 => 's1_trigcom9b0drigcoms_idb',
+        0 => 's1_trigcoms_s1_chainss1_trigcoms_idb',
       ),
     ),
   ),
