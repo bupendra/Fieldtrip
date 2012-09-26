@@ -1,0 +1,1 @@
+<?php echo anchor("administrator/home","Home",'class="link3"'); ?> | <?php echo anchor("users/finduser","Search/Add User",'class="link3"'); ?>

@@ -1,0 +1,5 @@
+09/24/12 19:17:54 [18680][-none-][FATAL] Could not connect to DB server localhost as root. port : Unknown database 'sugarcrm'
+09/24/12 19:18:00 [18680][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+09/24/12 19:18:00 [18680][-none-][FATAL] Could not connect to DB server localhost as root. port : Unknown database 'sugarcrm'
+09/24/12 19:18:25 [18680][-none-][FATAL] Configuration variable date.timezone is not set, guessed timezone UTC. Please set date.timezone="UTC" in php.ini!
+09/24/12 19:18:25 [18680][-none-][FATAL] Could not connect to DB server localhost as root. port : Unknown database 'sugarcrm'

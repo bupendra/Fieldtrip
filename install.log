@@ -1,0 +1,69 @@
+
+2012-09-24 19:15:26...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:15:50...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:16:22...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:16:28...Begin System Check Process *************
+2012-09-24 19:16:28...XML Parsing Support Found
+2012-09-24 19:16:28...MBString Support Found
+2012-09-24 19:16:28...ZIP Support Found
+2012-09-24 19:16:28.../custom directory and subdirectory check passed
+2012-09-24 19:16:28...cache directory and subdirectory check passed
+2012-09-24 19:16:30.../module  directory and subdirectory check passed
+2012-09-24 19:16:30.../upload directory check passed
+2012-09-24 19:16:30.../zip check passed
+2012-09-24 19:16:30...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:16:30...php.ini location found. D:\xampp\php\php.ini
+2012-09-24 19:16:30...Outputting HTML for System check
+2012-09-24 19:16:30...No Errors were found *************
+2012-09-24 19:16:33...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:16:36...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:16:41...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:16:49...Begin DB Check Process *************
+2012-09-24 19:16:49...testing with mysql:mysqli
+2012-09-24 19:16:49...Basic form info is valid, continuing Process.
+2012-09-24 19:16:49...Testing user account...
+2012-09-24 19:16:49...Connection made using  host: localhost, usr: root
+2012-09-24 19:16:49...Testing priviliged account...
+2012-09-24 19:16:49...Connection made using  host: localhost, usr: root
+2012-09-24 19:16:49...DB not selected, will create sugarcrm
+2012-09-24 19:16:49...Passed DB install check
+2012-09-24 19:16:49...SUCCESS:: no errors detected!
+2012-09-24 19:16:49...End DB Check Process *************
+2012-09-24 19:16:49...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:16:58...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:01...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:01...calling handleSugarConfig()
+2012-09-24 19:17:01...calling handleLog4Php()
+2012-09-24 19:17:01...calling handleHtaccess()
+2012-09-24 19:17:01...calling handleDbCreateDatabase()
+2012-09-24 19:17:02...looping through all the Beans and create their tables
+2012-09-24 19:17:02...processing table acl_actions
+2012-09-24 19:17:02...creating table acl_actions
+2012-09-24 19:17:02...creating Relationship Meta for ACLAction
+2012-09-24 19:17:02...processing table acl_roles
+2012-09-24 19:17:02...creating table acl_roles
+2012-09-24 19:17:02...creating Relationship Meta for ACLRole
+2012-09-24 19:17:02...processing table relationships
+2012-09-24 19:17:02...creating table relationships
+2012-09-24 19:17:02...creating Relationship Meta for Relationship
+2012-09-24 19:17:02...processing table leads
+2012-09-24 19:17:03...creating table leads
+2012-09-24 19:17:03...creating Relationship Meta for Lead
+2012-09-24 19:17:03...processing table cases
+2012-09-24 19:17:04...creating table cases
+2012-09-24 19:17:04...creating Relationship Meta for Case
+2012-09-24 19:17:04...processing table bugs
+2012-09-24 19:17:05...creating table bugs
+2012-09-24 19:17:05...creating Relationship Meta for Bug
+2012-09-24 19:17:05...processing table users
+2012-09-24 19:17:06...creating table users
+2012-09-24 19:17:06...creating Relationship Meta for User
+2012-09-24 19:17:07...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:11...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:13...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:15...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:15...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:16...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:16...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:28...installerHook: Could not find custom/install/install_hooks.php
+2012-09-24 19:17:54...installerHook: Could not find custom/install/install_hooks.php
