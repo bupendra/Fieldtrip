@@ -29,6 +29,7 @@ class User_model extends MY_Model  {
 	$execute = $this->db->query($sql, $data);
     //$this->db->insert($this->table_name, $data);
     //return $this->db->insert_id();
+	
   }
 
  /**
@@ -42,17 +43,7 @@ class User_model extends MY_Model  {
 		return $query->result();
   }	
   
-  /**
-   * Get Organization
-   */
-  public function get_org(array $data)
-  {
-  		//$sql = "call SearchAddUser(?,?,?,?,?,?,?,?,?)";
-		$sql = "call SearchOrganization(?,?)";
-		$query = $this->db->query($sql, $data);
-		return $query->result();
-  }	
-
+  
 
 	/*public function TotalRec()
 	{

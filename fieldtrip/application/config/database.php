@@ -67,6 +67,10 @@ $db['default']['stricton'] = FALSE;*/
 $db['default']['hostname'] = 'www4.fieldtripfactory.net';
 $db['default']['username'] = 'dev_sugar';
 $db['default']['password'] = 'WfBrCAhrxW3wcbAr';
+/*$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';*/
+
 $db['default']['database'] = 'dev_sugarcrm';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';

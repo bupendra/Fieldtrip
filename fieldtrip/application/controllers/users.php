@@ -21,7 +21,8 @@ class Users extends CI_Controller {
 	
 	public function index()
 	{
-		$this->finduser();
+		// $this->finduser();
+		redirect("users/finduser");
 	}
 	
 	
@@ -77,8 +78,9 @@ class Users extends CI_Controller {
 							   'primary_address_state'       => $this->input->post('state_fld'),
 							   'primary_address_postalcode'   => $this->input->post('zip_fld'),*/
 				$addrStreet = $addrCity = $addrState = $addrZip = $addrStreet2 = $addrCity2 = $addrState2 = $addrZip2 = '';
-					
-				if($this->input->post('prmCntct_btnType') == 1){					 	
+				
+                // Setting values for Primary Adddress or Secondary Address
+                if($this->input->post('prmCntct_btnType') == 1){					 	
 					$addrStreet = $this->input->post('homeAdr_fld');
 					$addrCity = $this->input->post('cityAdr_fld');
 					$addrState = $this->input->post('state_lst');
@@ -90,35 +92,47 @@ class Users extends CI_Controller {
 					$addrState2 = $this->input->post('state_lst');
 					$addrZip2 = $this->input->post('cntZip_fld');
 				}		
-				 
-				  $user_data = array(
+                
+				// Setting Bean Value 
+                if($this->input->post('radNoOrganization')=='no'):
+                    $beanModule = "Users";
+                else:
+                    $beanModule = "Contacts";    
+                endif;
+                
+				$user_data = array(
 							   'created_by'       => '1',
 							   'modified_user_id'       => '1',
 							   'salutation'   => $this->input->post('title_fld'), 
-							   'title'   => $this->input->post('jobtitle_fld'),
+							 
+                               'title'   => $this->input->post('jobtitle_fld'),
 							   'first_name'        => $this->input->post('firstname_fld'),
 							   'last_name'       => $this->input->post('lastname_fld'),
+                               
 							   'phone_home'       => $phoneNoHome,							   
 							   'phone_mobile'   => $phoneNoMob, 
 							   'phone_work'        => $phoneNoWrk,
 							   'phone_other'       => $phoneNoOthr,
 							   'phone_fax'        => $faxNo,
-							   'primary_address_street'   => $addrStreet,
+							   
+                               'primary_address_street'   => $addrStreet,
 							   'primary_address_city'        => $addrCity,
 							   'primary_address_state'       => $addrState,
 							   'primary_address_postalcode'   => $addrZip, 							  
 							   'primary_address_country'       => '',
+                               
 							   'alt_address_street'       => $addrStreet2,	
 							   'alt_address_city'   => $addrCity2, 
 							   'alt_address_state'        => $addrState2,
 							   'alt_address_postalcode'        => $addrZip2,
-							   'alt_address_country' => '',
-							   'PASSWORD'   => $this->input->post('password_fld'),
-							   'beanmodule'       => '',
+                               'alt_address_country' => '',
+							   
+                               'PASSWORD'   => $this->input->post('password_fld'),
+							   'beanmodule'       => $beanModule,
 							   'email_address'       => $this->input->post('email_fld'),
-							   'organization_id'       => '',
-							   'acounttype'       => '',
-							   'contactid' => $now);
+							   'organization_id'       => $this->input->post('txtOrganisationID'),
+							   'acounttype'       => $this->input->post('txtOrganisationTyp'),
+							   'contactid' => '');
 							   //$this->input->post('selType_fld')
 							   
 							   /*'primary_address_state'        => $this->input->post('firstname_fld'),

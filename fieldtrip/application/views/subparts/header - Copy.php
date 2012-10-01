@@ -1,8 +1,5 @@
 <html>
 <head>       
-<meta http-equiv="Cache-Control" content="no-cache">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Lang" content="en">
 <title>User Manager - User Profile</title>
 <link rel="STYLESHEET" href="<?php echo base_url()?>assets/admin.css" Type="text/css">
 <script language="javascript" src="<?php echo base_url()?>assets/js/general.js"></script>

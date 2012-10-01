@@ -111,15 +111,30 @@ class CI_DB_mysqli_result extends CI_DB_result {
 	 *
 	 * @return	null
 	 */
-	function free_result()
+	/*function free_result()
 	{
 		if (is_object($this->result_id))
 		{
 			mysqli_free_result($this->result_id);
 			$this->result_id = FALSE;
 		}
-	}
+	}     */
 
+   function free_result()
+   {
+    if (is_object($this->result_id)) {
+        mysqli_free_result($this->result_id);
+        while ($this->conn_id->next_result()) {
+            $result = $this->conn_id->use_result();
+            if ($result instanceof mysqli_result) {
+                $result->free();
+            }
+        }
+        $this->result_id = FALSE;
+    }
+  }
+    
+    
 	// --------------------------------------------------------------------
 
 	/**
@@ -165,7 +180,7 @@ class CI_DB_mysqli_result extends CI_DB_result {
 	function _fetch_object()
 	{
 		return mysqli_fetch_object($this->result_id);
-	}
+	}   
 
 }
 

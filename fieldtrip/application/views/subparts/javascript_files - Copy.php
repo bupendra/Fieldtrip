@@ -3,6 +3,8 @@
 <script language="javascript" src="<?php echo base_url()?>assets/js/jquery-latest.js"></script> 
 <script language="javascript" src="<?php echo base_url()?>assets/js/jquery.colorbox.js"></script>
 
+<script type="text/javascript" src="<?php echo base_url()?>assets/js/general.js"></script>
+
 <!--
 Add user page,
  -->
@@ -40,7 +42,6 @@ $(document).ready(function() {
 		closeClick	: false,
 		openEffect	: 'none',
 		closeEffect	: 'none'
-
 	});
 });
 </script>

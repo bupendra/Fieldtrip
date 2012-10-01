@@ -3,14 +3,17 @@ $(document).ready(function() {
 	$("#showSearchOrgStatus").hide();
 	
 	// user Search Button
-	$("#orgType_lst").change(function(){
+	$("#btnOrgSearch").click(function(){
 		
 		var errValue=0;
 		var orgname = $("#orgName_fld").val();
 		var orgtype = $("#orgType_lst").val();
+		var orgZipcode = $("#orgZipCode_fld").val();
+		var orgCity = $("#city_org_fld").val();
+		var orgState = $("#state_org_fld").val();
 		var action = $("#searchActionOrg").val();
 		
-		if(orgtype =='' ){
+		if(orgname =='' && orgtype=='' && orgZipcode=='' && orgCity=='' && orgState==''){
 			return false;
 		}else{
 			$("#showSearchOrgStatus").show();		
@@ -19,22 +22,27 @@ $(document).ready(function() {
 		var form_data = {
 			orgname: $("#orgName_fld").val(),
 			orgtype: $("#orgType_lst").val(),
-			
-			is_ajax: 1
+			orgZipcode: $("#orgZipCode_fld").val(),
+			orgState: $("#state_org_fld").val(),
+			orgCity: $("#city_org_fld").val()
 		};
 		
 		$.ajax({
 			type: "POST",
-			url: action,
+			url: $("#searchOrganizationAction").val(),
 			data: form_data,
 			success: function(data)
-			{ //alert(data);
+			{  // alert(data);
 				$("#showSearchOrgStatus").hide();
 				$("#divOrgMtch").html(data);
 			}
 		});
 		//return false;
 		
-	}).change();
-	
+	});
+    
+   
+      
 });
+
+

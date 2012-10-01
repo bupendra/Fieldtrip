@@ -1,5 +1,18 @@
 <?php $this->load->view("subparts/header"); ?>
-<table width="650" cellpadding="3" cellspacing="3">
+<script type="text/javascript">
+$(document).ready(function(){
+			//Turn all the select boxes into rating controls
+		    $(".rating").rating();
+		
+			//Show that we can bind on the select box
+			$("#serialStar2").bind("change", function(){
+				$('#serialString2').val( $('#serialStar2').serialize() );
+			});
+			
+		});	
+</script>
+
+<table width="650" cellpadding="0" cellspacing="0">
   <tr> 
     <td colspan=2  class="menuline"> | <a href="#" class="link3">Main 
       Menu</a> | </td>
@@ -15,12 +28,12 @@
 		  /**
 		   * Form Open 
 		   */
-		   echo form_open("users/adduser",'name="frmAddUser" id="frmAddUser"');
+		  echo form_open("users/adduser");
 		  ?>
           <input type="hidden" name="searchAction" id="searchAction" value="<?php echo base_url();?>users/search_users" />
 		  <input type="hidden" name="searchActionOrg" id="searchActionOrg" value="<?php echo base_url();?>users/search_org" />
           
-          <table width="650" border="0"  cellpadding="3" cellspacing="3" bgcolor="#eaf4ff">
+          <table width="60%" border="0"  cellpadding="1" cellspacing="1" bgcolor="#eaf4ff">
               <tr>
                 <td colspan="3"><img src="<?php echo base_url()?>assets/images/spacer.gif" width=5 height=5></td>
               </tr>
@@ -33,9 +46,9 @@
               </tr>
               
               <tr class="textBlue"> 
-                <td width="30%">Title*</td>
-                <td width="2%">:</td>
-                <td width="68%"  > 
+                <td width="32%">Title*</td>
+                <td width="1%">:</td>
+                <td width="67%" class="textBlue3" > 
                   <select class="inputBlue" id="title_fld" name="title_fld">
                   	<option value=""></option>
                     <option value="Ms.">Ms.</option>
@@ -50,8 +63,8 @@
               
               <tr class="textBlue"> 
                 <td >First Name*</td>
-                 <td width="2%">:</td>
-                <td >
+                 <td width="1%">:</td>
+                <td class="textBlue3" >
                 <input name="firstname_fld" id="firstname_fld" type="text" class="fldBlue" size="25" maxlength="50" value="">
                 <?php echo form_error('firstname_fld', '<div class="error">', '</div>'); ?>
                 </td>
@@ -59,8 +72,8 @@
               
               <tr class="textBlue"> 
                 <td> Last Name*</td>
-                <td width="2%">:</td>
-                <td >
+                <td width="1%">:</td>
+                <td class="textBlue3">
                 <input name="lastname_fld" id="lastname_fld" type="text" class="fldBlue" size="25" maxlength="50" value="">
                 <?php echo form_error('lastname_fld', '<div class="error">', '</div>'); ?>
                 <div class="error" id="reqLastName"></div>
@@ -69,8 +82,8 @@
               
               <tr class="textBlue"> 
                 <td>Zip*</td>
-                <td width="2%">:</td>
-                <td>
+                <td width="1%">:</td>
+                <td class="textBlue3">
                 <input name="lastname_fld" id="lastname_fld" type="text" class="fldBlue" size="25" maxlength="50" value="">
                 <?php echo form_error('lastname_fld', '<div class="error">', '</div>'); ?>
                 <div class="error" id="reqLastName"></div>
@@ -79,8 +92,8 @@
               
               <tr class="textBlue"> 
                 <td> City*</td>
-                <td width="2%">:</td>
-                <td>
+                <td width="1%">:</td>
+                <td class="textBlue3">
                 <input name="city_fld" id="city_fld" type="text" class="fldBlue" size="25" maxlength="" value="">
                 <?php echo form_error('city_fld', '<div class="error">', '</div>'); ?>
                 </td>
@@ -88,8 +101,8 @@
               
                <tr class="textBlue"> 
                 <td> State*</td>
-                <td width="2%">:</td>
-                <td>
+                <td width="1%">:</td>
+                <td class="textBlue3">
                 <select class="fldBlue" id="state_fld" name="state_fld">
 					<option value="" SELECTED > </option>
 					<optgroup label="United States">					
@@ -166,8 +179,8 @@
               
               <tr class="textBlue"> 
                 <td>Phone*</td>
-                <td width="2%">:</td>
-                <td>
+                <td width="1%">:</td>
+                <td class="textBlue3">
                 <input name="phArea_fld" id="phArea_fld" type="text" class="inputBlue" size="3" maxlength="3" value="">
                   - 
                   <input name="phPre_fld" id="phPre_fld" type="text" class="inputBlue" size="3" maxlength="3" value="">
@@ -185,8 +198,8 @@
               
               <tr class="textBlue"> 
                 <td>Phone type*</td>
-                 <td width="2%">:</td>
-                <td>
+                 <td width="1%">:</td>
+                <td class="textBlue3">
                 <input type="radio" name="phone_type_btn" value="1" checked="checked">
                   Work 
                   <input type="radio" name="phone_type_btn" value="2">
@@ -198,11 +211,11 @@
               
              <tr class="textBlue"> 
                 <td>Fax*</td>
-                <td width="2%">:</td>
-               <td >
-                <input name="fxArea_fld" type="text" class="inputBlue" size="3" maxlength="3" value=""> <!--onKeyup="autotab(this, document.AddUser.fxPre_fld)" -->
+                <td width="1%">:</td>
+               <td class="textBlue3">
+                <input name="fxArea_fld" type="text" class="inputBlue" size="3" onKeyup="autotab(this, document.AddUser.fxPre_fld)" maxlength="3" value="">
                   - 
-                  <input name="fxPre_fld" type="text" class="inputBlue" size="3"  maxlength="3" value=""> <!--onKeyup="autotab(this, document.AddUser.fxSuf_fld)" -->
+                  <input name="fxPre_fld" type="text" class="inputBlue" size="3" onKeyup="autotab(this, document.AddUser.fxSuf_fld)" maxlength="3" value="">
                   - 
                   <input name="fxSuf_fld" type="text" class="inputBlue" size="4" maxlength="4" value=""> 
 				  <?php 
@@ -215,8 +228,8 @@
               
               <tr class="textBlue"> 
                 <td>Fax type*</td>
-                 <td width="2%">:</td>
-<td >
+                 <td width="1%">:</td>
+<td class="textBlue3">
                       <input type="radio" name="fax_type_btn" value="1" checked="checked">
 					  Work 
 					  <input type="radio" name="fax_type_btn" value="2">
@@ -226,8 +239,8 @@
               
               <tr class="textBlue"> 
                 <td>Email id*</td>
-                <td width="2%">:</td>
-<td>
+                <td width="1%">:</td>
+<td class="textBlue3">
                      <input name="email_fld" id="email_fld" type="text" class="fldBlue" size="25" maxlength="" value="">
                 <?php echo form_error('email_fld', '<div class="error">', '</div>'); ?>
                 <div class="error" id="reqEmail"></div>
@@ -236,36 +249,25 @@
               
               <tr class="textBlue"> 
                 <td>Password*</td>
-                 <td width="2%">:</td>
-<td	>
+                 <td width="1%">:</td>
+<td class="textBlue3">
                      <input name="password_fld" type="password" class="fldBlue" size="25" maxlength="" value="">
 					<?php echo form_error('password_fld', '<div class="error">', '</div>'); ?>
                 </td>
               </tr>
 			 </table>
              
-			 <table width="650" border="0" cellpadding="3" cellspacing="3" bgcolor="#eaf4ff" style="padding-top:20px;">
+			 <table width="60%" border="0" cellpadding="1" cellspacing="1" bgcolor="#eaf4ff" style="padding-top:20px;">
               <tr> 
                 <td colspan="3" align="left"><u>Organization Information</u></td>
               </tr>
               <tr> 
                 <td colspan="3" align="left">&nbsp;</td>
               </tr>
-               <tr class="textBlue"> 
-                <td width="29%">Organization                </td>
-                 <td width="2%">:</td>
-                <td width="69%">
-              <input type="text" name="txtOrganization" id="txtOrganization"  size="20" disabled="disabled" />
-                If yes, <?php echo anchor("organization/findorg","Select Organization",'class="various fancybox.iframe"'); ?>
-                &nbsp;&nbsp; <input type="radio" name="radNoOrganization" value="no">No Organization
-               <input type="hidden" name="txtOrganisationID" id="txtOrganisationID" value="<?php echo set_value("txtOrganisationID"); ?>"  />
- 				<input type="hidden" name="txtOrganisationType" id="txtOrganisationType" value="<?php echo set_value("txtOrganisationType"); ?>"  />
-                </td>
-              </tr>
               <tr class="textBlue"> 
                 <td>Primary Role</td>
-                 <td width="2%">:</td>
-                <td>
+                 <td width="1%">:</td>
+                <td class="textBlue3">
               <select class="fldBlue" id="prmRole_lst" name="prmRole_lst">
 						<option value="" SELECTED > </option>
 						<option value="AK">AK</option>
@@ -276,33 +278,75 @@
               </tr>
               <tr class="textBlue"> 
                 <td>Job Title</td>
-                <td width="2%">:</td>
-                <td> <input name="jobtitle_fld" type="text" class="inputBlue" value=""></td>
+                <td width="1%">:</td>
+                <td class="textBlue3"> <input name="jobtitle_fld" type="text" class="inputBlue" value=""></td>
               </tr>
 			  
-			
-			<tr class="textBlue">
-			  	<td colspan="3" align="center"> 
-                	<input type="radio" name="prmCntct_btnType" value="1" checked="checked">Primary Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     <input type="radio" name="prmCntct_btnType" value="2">Secondary Contact
-                </td>                
+			  <tr class="textBlue">
+			  	<td>Fax type</td>
+                <td width="1%">:</td>
+                <td class="textBlue3"> 
+                  <input type="radio" name="fax_type_btn" value="1" checked="checked">
+                  Work 
+                  <input type="radio" name="fax_type_btn" value="2">
+                  Home 
+                  
+                </td>
 			</tr>
-			
+			<tr class="textBlue">
+			  	<td> 
+                <input type="radio" name="prmCntct_btnType" value="1" checked="checked">
+                </td>
+				<td colspan="2">Primary Contact</td>                
+			</tr>
+			<tr class="textBlue">
+			  	<td> 
+                  <input type="radio" name="prmCntct_btnType" value="2">
+                </td>
+				<td colspan="2">Secondary Contact</td>                
+			</tr>
+              <tr class="textBlue"> 
+                <td>Type of Group</td>
+                <td width="1%">:</td>
+              <td class="textBlue3"> 
+                	<select class="fldBlue" id="grpType_lst" name="grpType_lst">
+						<option value="" SELECTED > </option>
+						<option value="AK">AK</option>
+						<option value="AL">AL</option>
+						<option value="AR">AR</option>
+					</select>
+                </td>
+              </tr>
+			  <tr class="textBlue"> 
+                <td>Interest Level</td>
+               <td width="1%">:</td>
+              <td class="textBlue3"> 
+					<select style="display: none;" name="myRating" class="rating" id="serialStar2">
+						<option value="1">ALright</option>
+						<option value="2">Ok</option>
+						<option value="3">Getting Better</option>
+						<option value="4">Pretty Good</option>
+						<option value="5">Awesome</option>
+					</select>
+				<span><input type="hidden" name="serialString2" id="serialString2" /></span>	
+                </td>
+				
+              </tr>
               <tr class="textBlue"> 
                 <td>Home address</td>
-                <td width="2%">:</td>
-                <td> <input name="homeAdr_fld" type="text" class="inputBlue" size="25" value=""></td>
+                <td width="1%">:</td>
+                <td class="textBlue3"> <input name="homeAdr_fld" type="text" class="inputBlue" size="25" value=""></td>
               </tr>
               
               <tr class="textBlue"> 
                 <td>City</td>
-                 <td width="2%">:</td>
-                <td> <input name="cityAdr_fld" type="text" class="inputBlue" size="10" maxlength="" value=""></td>
+                 <td width="1%">:</td>
+                <td class="textBlue3"> <input name="cityAdr_fld" type="text" class="inputBlue" size="10" maxlength="" value=""></td>
               </tr>
               <tr class="textBlue"> 
                 <td>State</td>
-                 <td width="2%">:</td>
-                <td> 
+                 <td width="1%">:</td>
+                <td class="textBlue3"> 
                   <select class="fldBlue" id="cntState_lst" name="state_lst">
 					<option value="" SELECTED > </option>
 					<optgroup label="United States">					
@@ -377,18 +421,16 @@
               </tr>
 			  <tr class="textBlue"> 
                 <td >Zip</td>
-                 <td width="2%">:</td>
-                <td><input name="cntZip_fld" type="text" class="fldBlue" size="25" maxlength="6" value=""></td>
+                 <td width="1%">:</td>
+                <td class="textBlue3"><input name="cntZip_fld" type="text" class="fldBlue" size="25" maxlength="6" value=""></td>
 			</tr>
 			  
             <tr class="textBlue"> 
-                <td colspan="3">&nbsp;</td>
-			</tr>
-             <tr class="textBlue"> 
                 <td>&nbsp;</td>
-                 <td width="2%"></td>
-              <td> <input name="Next" type="submit" class="fldBlue" id="Next" value="Next" /></td>
+                 <td width="1%"></td>
+              <td class="textBlue3"> <input name="Next" type="submit" class="fldBlue" id="Next" value="Next" /></td>
 			</tr>
+            
              </table>
             
           
@@ -403,31 +445,3 @@
         </tr>
       </table> -->
 <?php $this->load->view("subparts/footer"); ?>
-<script language="javascript">
-$(document).ready(function() { 
-	$('#phArea_fld').keyup(function() {
-		 if(this.value.length == $(this).attr('maxlength')) {
-			 $('#phPre_fld').focus();
-		 }
-	 });
-	 $('#phPre_fld').keyup(function() {
-		 if(this.value.length == $(this).attr('maxlength')) {
-			 $('#phSuf_fld').focus();
-		 }
-	 }); 
-});
-
-$(document).ready(function() { 
-	$('#fxArea_fld').keyup(function() {
-		 if(this.value.length == $(this).attr('maxlength')) {
-			 $('#fxPre_fld').focus();
-		 }
-	 });
-	 $('#fxPre_fld').keyup(function() {
-		 if(this.value.length == $(this).attr('maxlength')) {
-			 $('#fxSuf_fld').focus();
-		 }
-	 }); 
-});
-	 
-</script>
