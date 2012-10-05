@@ -6,7 +6,6 @@
 <meta name="keywords" content="Visio, Extra Tour, css3" />
 <title>FTF Admin</title>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>style.css"/>
-<?php $this->load->view("subparts/javascript_files"); ?>
 <script type="text/javascript">
 function MM_jumpMenu(targ,selObj,restore){ //v3.0
   eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
@@ -20,7 +19,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   <div class="logo">
       <div class="logocol1"><a href="#"><img src="<?php echo base_url();?>assets/images/logo.jpg" alt="logo"/></a></div>
       <div class="logocol2">
-      	<p align="right">User Name: David</p>
-      	<p align="right">Date: 27/09/12</p>
+      	<p align="right">User Name: <strong><?php echo strtoupper($this->session->userdata('username')); ?></strong></p>
+      	<p align="right">Date: <?php echo date('d M ,Y'); ?></p>
       </div>
   </div>
+  <div style="clear:both"></div>

@@ -17,7 +17,7 @@
       
 <table class="border2" cellspacing="1" cellpadding="1" width="125" bgcolor="white" background border="0">
   <tr> 
-    <td  class="genLn1" style="text-align:center;">Username</td>
+    <td  class="genLn1" style="text-align:center;"><?php echo $this->session->userdata('username'); ?></td>
   </tr>
   <tr> 
     <td align="middle" valign="center"><img height="2" src="<?php echo base_url()?>assets/images/blueSq.gif" width="118" border="0"></td>

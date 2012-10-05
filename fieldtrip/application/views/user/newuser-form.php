@@ -193,11 +193,12 @@
                   Home 
                   <input type="radio" name="phone_type_btn" value="3">
                   Cell
+				  <?php echo form_error('phone_type_btn', '<div class="error">', '</div>'); ?>
                 </td>
               </tr>
               
              <tr class="textBlue"> 
-                <td>Fax*</td>
+                <td>Fax</td>
                 <td width="2%">:</td>
                <td >
                 <input name="fxArea_fld" type="text" class="inputBlue" size="3" maxlength="3" value=""> <!--onKeyup="autotab(this, document.AddUser.fxPre_fld)" -->
@@ -206,15 +207,15 @@
                   - 
                   <input name="fxSuf_fld" type="text" class="inputBlue" size="4" maxlength="4" value=""> 
 				  <?php 
-							echo form_error('fxArea_fld', '<div class="error">', '</div>');
+							/*echo form_error('fxArea_fld', '<div class="error">', '</div>');
 							echo form_error('fxPre_fld', '<div class="error">', '</div>');
-							echo form_error('fxSuf_fld', '<div class="error">', '</div>');
+							echo form_error('fxSuf_fld', '<div class="error">', '</div>');*/
 					   ?>
                 </td>
               </tr>
               
               <tr class="textBlue"> 
-                <td>Fax type*</td>
+                <td>Fax type</td>
                  <td width="2%">:</td>
 <td >
                       <input type="radio" name="fax_type_btn" value="1" checked="checked">
@@ -257,12 +258,13 @@
                 <td width="69%">
               <input type="text" name="txtOrganization" id="txtOrganization"  size="20" disabled="disabled" />
                 If yes, <?php echo anchor("organization/findorg","Select Organization",'class="various fancybox.iframe"'); ?>
-                &nbsp;&nbsp; <input type="radio" name="radNoOrganization" value="no">No Organization
+                &nbsp;&nbsp; <input type="checkbox" name="radNoOrganization" value="no" id='IdNoOrg' checked="checked">No Organization
                <input type="hidden" name="txtOrganisationID" id="txtOrganisationID" value="<?php echo set_value("txtOrganisationID"); ?>"  />
  				<input type="hidden" name="txtOrganisationType" id="txtOrganisationType" value="<?php echo set_value("txtOrganisationType"); ?>"  />
                 </td>
               </tr>
-              <tr class="textBlue"> 
+			  
+              <tr class="textBlue clsOrgInfoDet"> 
                 <td>Primary Role</td>
                  <td width="2%">:</td>
                 <td>
@@ -274,32 +276,32 @@
 					</select>
                 </td>
               </tr>
-              <tr class="textBlue"> 
+              <tr class="textBlue clsOrgInfoDet"> 
                 <td>Job Title</td>
                 <td width="2%">:</td>
                 <td> <input name="jobtitle_fld" type="text" class="inputBlue" value=""></td>
               </tr>
 			  
 			
-			<tr class="textBlue">
+			<tr class="textBlue clsOrgInfoDet">
 			  	<td colspan="3" align="center"> 
                 	<input type="radio" name="prmCntct_btnType" value="1" checked="checked">Primary Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      <input type="radio" name="prmCntct_btnType" value="2">Secondary Contact
                 </td>                
 			</tr>
 			
-              <tr class="textBlue"> 
+              <tr class="textBlue clsOrgInfoDet"> 
                 <td>Home address</td>
                 <td width="2%">:</td>
                 <td> <input name="homeAdr_fld" type="text" class="inputBlue" size="25" value=""></td>
               </tr>
               
-              <tr class="textBlue"> 
+              <tr class="textBlue clsOrgInfoDet"> 
                 <td>City</td>
                  <td width="2%">:</td>
                 <td> <input name="cityAdr_fld" type="text" class="inputBlue" size="10" maxlength="" value=""></td>
               </tr>
-              <tr class="textBlue"> 
+              <tr class="textBlue clsOrgInfoDet"> 
                 <td>State</td>
                  <td width="2%">:</td>
                 <td> 
@@ -375,16 +377,16 @@
 				  </select>
                  </td>
               </tr>
-			  <tr class="textBlue"> 
+			  <tr class="textBlue clsOrgInfoDet"> 
                 <td >Zip</td>
                  <td width="2%">:</td>
                 <td><input name="cntZip_fld" type="text" class="fldBlue" size="25" maxlength="6" value=""></td>
 			</tr>
 			  
-            <tr class="textBlue"> 
+            <tr class="textBlue clsOrgInfoDet"> 
                 <td colspan="3">&nbsp;</td>
 			</tr>
-             <tr class="textBlue"> 
+             <tr class="textBlue clsOrgInfoDet"> 
                 <td>&nbsp;</td>
                  <td width="2%"></td>
               <td> <input name="Next" type="submit" class="fldBlue" id="Next" value="Next" /></td>
@@ -418,6 +420,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() { 
+$('.clsOrgInfoDet').hide();
 	$('#fxArea_fld').keyup(function() {
 		 if(this.value.length == $(this).attr('maxlength')) {
 			 $('#fxPre_fld').focus();
@@ -428,6 +431,15 @@ $(document).ready(function() {
 			 $('#fxSuf_fld').focus();
 		 }
 	 }); 
+	 
+	 $("#IdNoOrg").click(function() {
+	 //alert($('#IdNoOrg').is(':checked'));
+	 	if ($('#IdNoOrg').is(':checked')) {
+			$(".clsOrgInfoDet").hide();
+		} else {
+			$(".clsOrgInfoDet").show();
+		}
+	 })
 });
 	 
 </script>

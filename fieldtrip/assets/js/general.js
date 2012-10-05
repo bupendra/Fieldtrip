@@ -17,5 +17,8 @@ function checkOrgTypeOther(){
 	if(orgtype == 7){
 		//alert(orgtype);
 		$("#orgTypeOther_fld").removeAttr("disabled");
+	}else if(orgtype == 1){
+		//alert(orgtype);
+		$("#dnFax_cbx").attr("checked","checked");
 	}
 }

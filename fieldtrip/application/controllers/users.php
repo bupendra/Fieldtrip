@@ -24,11 +24,107 @@ class Users extends CI_Controller {
 		// $this->finduser();
 		redirect("users/finduser");
 	}
-	
+	/**
+	* Find user form
+	*/
 	
 	public function finduser()
 	{
-		$this->load->view("user/finduser-form");
+		$data = array();
+		
+		
+		if($this->input->post('srchUsrBtn'))
+		{
+			$phoneNo = $this->input->post('txtPhoneArea').$this->input->post('txtPhoneCode').$this->input->post('txtPhone');
+			$faxNo = $this->input->post('txtFaxArea').$this->input->post('txtFaxCode').$this->input->post('txtFax');
+			$user_data = array('Id'   => $this->input->post('txtUsrerId'),
+						   'firstname'    => $this->input->post('txtFirstName'),
+						   'lastname'    => $this->input->post('txtLastName'),
+						   'organizationname'    => $this->input->post('txtOrganizationName'),
+						   'organizationtype' => $this->input->post('orgType_lst'),
+						   'phonehome'    => $phoneNo,
+						   'phonefax'    => $faxNo,
+						   'primaryaddress_city'    => $this->input->post('txtCity'),
+						   'primaryaddress_state' => $this->input->post('selState'),
+						   'primaryaddress_postalcode'    => $this->input->post('txtZipCode'),
+						   'email' => $this->input->post('txtEmailId')
+						   );
+								   
+        	$res = $this->user_model->get_search_user($user_data);
+			$data['res'] = $res;
+			/*foreach($res as $r){
+				$data = array();
+				$data['first_name'] = $r->first_name;
+				$data['last_name'] = $r->last_name;
+				$data['primary_address_city'] = $r->primary_address_city;
+				$data['primary_address_state'] = $r->primary_address_state;
+				$data['primary_address_postalcode'] = $r->primary_address_postalcode;
+			}*/
+				$this->load->view("user/usersearch-results",$data);
+		
+		
+			}else{
+				$data['OrganizationTypes'] = $this->config->item('ORG_TYPES');
+				$data['StatesList'] = $this->config->item('STATES_LIST');						
+				$this->load->view("user/finduser-form",$data);
+			
+			}
+		
+		
+	}
+	/**
+	* Find user form search result
+	*/
+	
+	public function finduser_result()
+	{
+		$phoneNo = $this->input->post('txtPhoneArea').$this->input->post('txtPhoneCode').$this->input->post('txtPhone');
+		$faxNo = $this->input->post('txtFaxArea').$this->input->post('txtFaxCode').$this->input->post('txtFax');
+		$user_data = array('Id'   => $this->input->post('txtUsrerId'),
+								   'firstname'    => $this->input->post('txtFirstName'),
+                                   'lastname'    => $this->input->post('txtLastName'),
+                                   'organizationname'    => $this->input->post('txtOrganizationName'),
+                                   'organizationtype' => $this->input->post('orgType_lst'),
+								   'phonehome'    => $phoneNo,
+                                   'phonefax'    => $faxNo,
+                                   'primaryaddress_city'    => $this->input->post('txtCity'),
+                                   'primaryaddress_state' => $this->input->post('selState'),
+								   'primaryaddress_postalcode'    => $this->input->post('txtZipCode'),
+                                   'email' => $this->input->post('txtEmailId')
+								   );
+								   
+        $res = $this->user_model->get_search_user($user_data);
+		
+		$disp ='<center><span class="hdrYellow2">'.'123'.' Organizations Found</span>
+		<span class="hdrYellow2"><a onclick="$(\'#divOrgMtch\').hide()">X</a></span></center>
+		<div class="gridview">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+			 <tr>
+            <td width="4" bgcolor="#669EE3">&nbsp;
+                <input type="hidden" name="selectedOrganizationActionPath" id="selectedOrganizationActionPath" value="organization/assignSession" /></td>
+            <td width="164" height="30" bgcolor="#669EE3"><a href="#" class="gridheader">Name</a></td>
+			<td width="164" height="30" bgcolor="#669EE3"><a href="#" class="gridheader">Organization</a></td>
+            <td width="114" bgcolor="#669EE3"><a href="#" class="gridheader">City, State Zip</a></td>            
+          </tr>';
+		//$c=1;
+		foreach($res as $r){
+
+			$disp .='<tr>
+                        <td bgcolor="#EDF2FA">&nbsp;</td>
+                        <td height="26" bgcolor="#EDF2FA">
+                            <a href="javascript:parent.jQuery.fancybox.close();" id="selectedOrganization" onclick="return AssignToSession(\''.$r->id.'\',\''.$r->first_name.'\',\''.$r->account_type.'\')">'.$r->first_name.' '.$r->last_name.'</a>                                                                                                                                                                                             
+                        </td>
+                        <td height="25" bgcolor="#EDF2FA">'.$r->last_name.'</td>
+                        <td height="25" bgcolor="#EDF2FA">'.$r->primary_address_city.','.$r->primary_address_state.'&nbsp;'.$r->primary_address_postalcode.'</td>
+                        <td height="25" bgcolor="#EDF2FA">'.$r->billing_address_postalcode.'</td>
+                    </tr>'; //$r->phonehome
+			//$c++;
+			//if($c==10) break;
+		}
+		$disp .=' </table>        
+                </div>';
+		
+		echo $disp;
 	}
 	
 	public function adduser()
@@ -36,22 +132,25 @@ class Users extends CI_Controller {
 			$this->form_validation->set_rules('title_fld', 'Title', 'required');
 			$this->form_validation->set_rules('firstname_fld', 'Firstname', 'required');
 			$this->form_validation->set_rules('lastname_fld', 'Lastname', 'required');
+			$this->form_validation->set_rules('city_fld', 'City', 'required');
+			$this->form_validation->set_rules('state_fld', 'State', 'required');
 			
-			/* Phone/fax/email Validation 
-			if($this->input->post('selType_fld') == 'p'){
+			/* Phone/fax/email Validation */
+			//if($this->input->post('selType_fld') == 'p'){
 				$this->form_validation->set_rules('phArea_fld', 'Phone', 'required');
 				$this->form_validation->set_rules('phPre_fld', 'Phone', 'required');
 				$this->form_validation->set_rules('phSuf_fld', 'Phone', 'required');
-			}else if($this->input->post('selType_fld') == 'f'){
+				$this->form_validation->set_rules('phone_type_btn', 'Phone Type', 'required');
+			//}else if($this->input->post('selType_fld') == 'f'){
 				$this->form_validation->set_rules('fxArea_fld', 'Fax', 'required');
 				$this->form_validation->set_rules('fxPre_fld', 'Fax', 'required');
 				$this->form_validation->set_rules('fxSuf_fld', 'Fax', 'required');
-			}else{
+			//}else{
 				$this->form_validation->set_rules('email_fld', 'Email', 'required');
 				$this->form_validation->set_rules('password_fld', 'Password', 'required');
-			}
+			//}
 			
-			$this->form_validation->set_rules('zip_fld', 'Zipcode', 'required|number');*/
+			$this->form_validation->set_rules('zip_fld', 'Zipcode', 'required|number');
 			if ($this->form_validation->run() == FALSE)
 			{
 				$this->load->view('user/newuser-form');

@@ -2,6 +2,7 @@
 <script language="javascript" src="<?php echo base_url()?>assets/jquery-accordion/jquery.easing.1.3.js"></script>
 <script language="javascript" src="<?php echo base_url()?>assets/js/jquery-latest.js"></script> 
 <script language="javascript" src="<?php echo base_url()?>assets/js/jquery.colorbox.js"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/js/general.js"></script>
 
 <!--
 Add user page,
@@ -31,10 +32,10 @@ Add user page,
 <script type="text/javascript">
 $(document).ready(function() {
 	$(".various").fancybox({
-		maxWidth	: 800,
+		maxWidth	: 850,
 		maxHeight	: 700,
 		fitToView	: false,
-		width		: '80%',
+		width		: '85%',
 		height		: '90%',
 		autoSize	: false,
 		closeClick	: false,
@@ -44,6 +45,7 @@ $(document).ready(function() {
 	});
 });
 </script>
+
 <?php } ?>
 
 <?php if($this->uri->segment(2)=="adduser"){?>

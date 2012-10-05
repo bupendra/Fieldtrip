@@ -76,10 +76,15 @@
                 <td> Organization Type</td>
                 <td>&nbsp;</td>
                 <td class="textBlue3"> 
-                 <select name="txtOrganizationType" id="txtOrganizationType">
+                 <!--<select name="txtOrganizationType" id="txtOrganizationType">
                  	<option value="">- Select -</option>
-                 </select>
-                 </td>
+                 </select> -->
+				 <?php 
+				  $options = 'id="orgType_lst" class="inputBlue"';
+				  echo form_dropdown('orgType_lst', $OrganizationTypes, '', $options);
+  ?>
+                 
+				 </td>
               </tr>
               <tr class="textBlue"> 
                 <td>&nbsp;</td>
@@ -96,14 +101,14 @@
               
               <tr class="textBlue"> 
                 <td>&nbsp;</td>
-                <td>Phone</td>
+                <td>Fax</td>
                 <td>&nbsp;</td>
                 <td class="textBlue3"> 
-                      <input name="txtPhoneArea" id="txtPhoneArea" type="text" class="inputBlue" size="3" maxlength="3" value="">
+                      <input name="txtFaxArea" id="txtFaxArea" type="text" class="inputBlue" size="3" maxlength="3" value="">
                       - 
-                      <input name="txtPhoneCode" id="txtPhoneCode" type="text" class="inputBlue" size="3" maxlength="3" value="">
+                      <input name="txtFaxCode" id="txtFaxCode" type="text" class="inputBlue" size="3" maxlength="3" value="">
                       - 
-                      <input name="txtPhone" id="txtPhone" type="text" class="inputBlue" size="4" maxlength="4" value=""> 
+                      <input name="txtFax" id="txtFax" type="text" class="inputBlue" size="4" maxlength="4" value=""> 
                 </td>
               </tr>
               
@@ -118,9 +123,14 @@
                 <td>State</td>
                 <td>&nbsp;</td>
                 <td class="textBlue3">
-                <select name="txtState" id="txtState">
+                <!--<select name="txtState" id="txtState">
                  	<option value="">- Select -</option>
-                 </select>
+                 </select> -->
+				 
+<?php 
+				   $options = 'id="selState" class="fldBlue"';
+				   echo form_dropdown('selState', $StatesList, "" , $options);
+   ?>
                 </td>
               </tr>
               
@@ -146,7 +156,7 @@
                 <td colspan="4" align=center class="hdrBlue"> 
                <!-- <input name="btnSearch" id="btnSearch" type="button" class="fldBlue" value="Search" />-->
                <input type="hidden" name="searchAction" id="searchAction" value="<?php echo base_url();?>users/search_users" />
-                <input type="button" name="srchUsrBtn" id="srchUsrBtn" value="Search" />
+                <input type="submit" name="srchUsrBtn" id="srchUsrBtn" value="Search" />
                 </td>
               </tr>
               <tr> 

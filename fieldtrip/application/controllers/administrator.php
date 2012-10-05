@@ -22,7 +22,6 @@ class Administrator extends MY_Controller {
     */   
 	public function index()
 	{
-	    
 	    if ($this->_is_logged_in() == TRUE)
         {
            redirect('administrator/home');
@@ -72,7 +71,7 @@ class Administrator extends MY_Controller {
 			$data = array();
 								
             $this->form_validation->set_rules('username_fld', 'username', 'trim|required'); 
-			$this->form_validation->set_rules('password_fld', 'password', 'trim|required'); 
+			$this->form_validation->set_rules('password_fld', 'password', 'trim|required|md5'); 
 			if($this->form_validation->run() == FALSE):
 			
 						$this->load->view('login',$data);
@@ -81,14 +80,15 @@ class Administrator extends MY_Controller {
 			
 			 	 // Authenticate user.
 				 $userData =   array('username' => $this->input->post('username_fld',TRUE), 
-                                'password' => $this->input->post('password_fld',TRUE),
-								'result'=>'');
+									'password' => $this->input->post('password_fld',TRUE),
+								    'result'=>'');
 				$user_id = $this->Adminlogin_model->authenticate($userData);
 				
 				if($user_id!="0")
 				{
 					 // Create session var
 					 // $user = $this->Adminlogin_model->find_by_aid($user_id);
+					  $this->session->set_userdata('username', $this->input->post('username_fld',TRUE));
 					  $this->create_login_session($user_id);
 					  $this->session->set_flashdata('flash_message', 'You are logged in.');
 					  redirect('administrator/home');
@@ -133,56 +133,8 @@ class Administrator extends MY_Controller {
       */
       public function changepassword()
       {
-           
-		   if($this->_is_logged_in() == FALSE)
-       	   {
-          		redirect('administrator');
-      	   }
-	   
-		   $data = array(); 
-			
-			/**
-           * To get the header information, based on the Admin email
-           */
-           $user = $this->Adminlogin_model->get_by_email_address($this->session->userdata('admin_email'));
-           $data['user_data'] = $user;
+           // Body
 		   
-		   
-		    if(!$this->input->post('btnConfirm')):
-		
-					$this->load->view('admin/change-password',$data);
-				
-			else:
-					
-					$this->form_validation->set_rules('txtOldPassword', 'old password', 'trim|required|callback_password_check'); 
-					$this->form_validation->set_rules('txtNewPassword', 'new password', 'trim|required|matches[txtConfirmPwd]|md5'); 
-					$this->form_validation->set_rules('txtConfirmPwd', 'confirm password', 'trim|required|md5');
-					if($this->form_validation->run() == FALSE)
-					{
-								$this->load->view('admin/change-password',$data);
-					}  
-					else
-					{
-					 			
-							/**
-							 * Form, On Success
-							 */
-							$oldpassword =$this->input->post("txtOldPassword");
-							$newpass =$this->input->post("txtNewPassword");
-							$confirm =$this->input->post("txtConfirmPwd");
-							
-							$admin_ID = $data['user_data']->aid;
-							if($this->Adminlogin_model->update_password($newpass,$admin_ID))
-							{
-								$data['statusMsg']="<span style='color:#009900'>Account Details Updated Successfully..<br />To Effect the changes please logout and login again</span>";
-								
-							}else{
-								$data['statusMsg']="<span style='color:#FF0000'>Unable to update, Please try again..</span>";
-								
-							}	
-							$this->load->view('admin/change-password',$data);
-					}
-			endif;		
       }
 	 
 	 
@@ -192,24 +144,7 @@ class Administrator extends MY_Controller {
 	*/
 	public function password_check()
 	{
-		 if($this->_is_logged_in() == FALSE)
-       	 {
-          redirect('administrator');
-         }
-		 
-		 /**
-		  * Calling the model function , to get the present username
-		  */
-		 $values =array("aid"=>$this->session->userdata("aid"), 
-		 				"ad_password"=>md5($this->input->post('txtOldPassword')));
-		 
-		 $query= $this->db->get_where("tbl_administrator",$values); 
-		 if($query->num_rows() == 1){
-		 	return TRUE;
-		 }else{
-		 	$this->form_validation->set_message('password_check','Invalid Old Password');
-			return FALSE;
-		}
+		 // body
 	}
 	
 	

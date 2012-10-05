@@ -1,23 +1,29 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Organization extends CI_Controller {
+class Organization extends MY_Controller {
 
 	
     public function __construct()
     {
         parent::__construct();    
-       
+        if ($this->is_logged_in() == FALSE)
+		{
+		  redirect('administrator');
+		}
+		
         $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         $this->output->set_header('Pragma: no-cache');
         $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 		
 		$this->load->model('organization_model');
+        $this->load->library('pagination');
     }  
 	 
 	public function index()
 	{
-		$this->load->view('login');
+		echo "working on this module..";
+		//$this->load->view('login');
 	}
 	
     /**
@@ -100,7 +106,10 @@ class Organization extends CI_Controller {
     */
     public function findorg(){
         
-        $this->load->view('organization/pop-search_org');
+        $data = array();
+		$data['OrganizationTypes'] = $this->config->item('ORG_TYPES');
+		$data['StatesList'] = $this->config->item('STATES_LIST');
+		$this->load->view('organization/pop-search_org',$data);
         
     } 
     
@@ -108,79 +117,86 @@ class Organization extends CI_Controller {
 	/**
 	* Search Organization, Ajax Results
 	*/
-	public function search_organizations()
+	public function orgresults()
 	{
-		/*$organization_data = array('name'   => $this->input->post('orgname'),
-								   'type'    => $this->input->post('orgtype'),
-								   'primaryaddress_city'       => $this->input->post('city'),
-								   'primaryaddress_state'       => $this->input->post('state'),
-								   'primaryaddress_postalcode'       => $this->input->post('zipcode')
-								   );	*/
-		$organization_data_paging = array('name'   => $this->input->post('orgname'),
-									   'account_type'    => $this->input->post('orgtype'),
-									   'billing_address_city'    => $this->input->post('orgCity'),
-									   'billing_address_state'    => $this->input->post('orgState'),
-									   'billing_address_postalcode'    => $this->input->post('orgZipcode'),
-									   'pagestart'=>0,
-									   'pageend'=>10000
-								   );
-		$organization_data = array('name'   => $this->input->post('orgname'),
-								   'account_type'    => $this->input->post('orgtype'),
-                                   'billing_address_city'    => $this->input->post('orgCity'),
-                                   'billing_address_state'    => $this->input->post('orgState'),
-                                   'billing_address_postalcode' => $this->input->post('orgZipcode')
-								   );					   
 		
-		$totRows = $this->organization_model->get_search_organizations_count($organization_data);
-		//echo $tot_res->tcount;
-        $res = $this->organization_model->get_search_organization($organization_data_paging);
-		//print_r($res);
-		//die;
+		$data = array();
+		$data['OrganizationTypes'] = $this->config->item('ORG_TYPES');
+		$data['StatesList'] = $this->config->item('STATES_LIST');
 		
-        
-		$disp ='<center><span class="hdrYellow2">'.$totRows.' Organizations Found</span>
-		<span class="hdrYellow2"><a onclick="$(\'#divOrgMtch\').hide()">X</a></span></center>
-		<div class="gridview">
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-			 <tr>
-            <td width="4" bgcolor="#669EE3">&nbsp;
-                <input type="hidden" name="selectedOrganizationActionPath" id="selectedOrganizationActionPath" value="organization/assignSession" /></td>
-            <td width="164" height="30" bgcolor="#669EE3"><a href="#" class="gridheader">Organization Name</a></td>
-            <td width="114" bgcolor="#669EE3"><a href="#" class="gridheader">Address</a></td>
-            <td width="81" bgcolor="#669EE3"><a href="#" class="gridheader">City, State</a></td>
-            <td width="57" bgcolor="#669EE3"><a href="#" class="gridheader">Zip</a></td>
-          </tr>';
-		//$c=1;
-		foreach($res as $r){
+			$uri = $this->uri->segment(3);
+			$offset = ( ! empty($uri) && is_numeric($uri)) ? $uri : 0;
+			$per_page = 30;
+			
+			if($this->input->post('btnOrgSearch'))
+			{
+				$organization_data_paging = array('name'   => $this->input->post('orgName_fld'),
+										   'account_type'    => $this->input->post('orgType_lst'),
+										   'billing_address_city'    => $this->input->post('city_org_fld'),
+										   'billing_address_state'    => $this->input->post('state_org_fld'),
+										   'billing_address_postalcode'    => $this->input->post('orgZipCode_fld'),
+										   'pagestart'=>$offset,
+										   'pageend'=>$per_page
+									   );
+				$organization_data = array('name'   => $this->input->post('orgName_fld'),
+										   'account_type'    => $this->input->post('orgType_lst'),
+										   'billing_address_city'    => $this->input->post('city_org_fld'),
+										   'billing_address_state'    => $this->input->post('state_org_fld'),
+										   'billing_address_postalcode' => $this->input->post('orgZipCode_fld')
+										   );
+												
+				// Storing in Session value.								   					   
+				$this->session->set_userdata("OrgNAME",$this->input->post('orgName_fld'));
+				$this->session->set_userdata("OrgTYPE",$this->input->post('orgType_lst'));
+				$this->session->set_userdata("OrgCITY",$this->input->post('city_org_fld'));
+				$this->session->set_userdata("OrgSTATE",$this->input->post('state_org_fld'));
+				$this->session->set_userdata("OrgZIPCODE",$this->input->post('orgZipCode_fld'));
+				
+			}else{
+			
+				
+					$organization_data_paging = array('name'   => $this->session->userdata("OrgNAME"),
+										   'account_type'    => $this->session->userdata("OrgTYPE"),
+										   'billing_address_city'    => $this->session->userdata("OrgCITY"),
+										   'billing_address_state'    => $this->session->userdata("OrgSTATE"),
+										   'billing_address_postalcode'    => $this->session->userdata('OrgZIPCODE'),
+										   'pagestart'=>$offset,
+										   'pageend'=>$per_page
+									   );
+					$organization_data = array('name'   => $this->session->userdata("OrgNAME"),
+										   'account_type'    => $this->session->userdata("OrgTYPE"),
+										   'billing_address_city'    => $this->session->userdata("OrgCITY"),
+										   'billing_address_state'    => $this->session->userdata("OrgSTATE"),
+										   'billing_address_postalcode' => $this->session->userdata("OrgZIPCODE")
+										   );
+			
+			}
+				$totRows = $this->organization_model->get_search_organizations_count($organization_data);
+				//echo $tot_res->tcount;
+				$res = $this->organization_model->get_search_organization($organization_data_paging);
+				//print_r($res);
+				//die;
+				
+				$config = array();
+				$config['base_url']         = site_url('organization/orgresults');
+				$config['uri_segment'] = 3;
+				$config['total_rows']       = $totRows;
+				$config['per_page']         = $per_page;
+				$config['full_tag_open']    = '<div class="pagination">';
+				$config['full_tag_close']   = '</div>';
+				$config['next_link']        = 'Next &rarr;';
+				$config['prev_link']        = 'Previous &laquo;';
+				$config['cur_tag_open'] =  '<a class="current">';
+				
 
-			$disp .='<tr>
-                        <td bgcolor="#EDF2FA">&nbsp;</td>
-                        <td height="26" bgcolor="#EDF2FA">
-                            <a href="javascript:parent.jQuery.fancybox.close();" id="selectedOrganization" onclick="return AssignToSession(\''.$r->id.'\',\''.$r->NAME.'\',\''.$r->account_type.'\')">'.$r->NAME.'</a>                                                                                                                                                                                             
-                        </td>
-                        <td height="25" bgcolor="#EDF2FA">'.$r->billing_address_street.'</td>
-                        <td height="25" bgcolor="#EDF2FA">'.$r->billing_address_city.'&nbsp;'.$r->billing_address_state.'</td>
-                        <td height="25" bgcolor="#EDF2FA">'.$r->billing_address_postalcode.'</td>
-                    </tr>'; //$r->phonehome
-			//$c++;
-			//if($c==10) break;
-		}
-		$disp .=' </table>        
-                </div>';
-		
-		echo $disp;		
-	}
-		
+				$this->pagination->initialize($config);
 	
-    /**
-    * Jquery selected Organization, Assign to session
-    */
-  /*  public function assignSession()
-    {
-        $newdata = array(
-                   'SessionOrganizationName'  => $this->uri->segment(3),
-                   'SessionOrganizationID'     => $this->uri->segment(4)
-               );
-        $this->session->set_userdata($newdata);    
-    }*/
+				$data['totRows'] = $totRows;
+				$data['res'] = $res;
+				$data['pagination'] =  $this->pagination->create_links();
+				
+				$this->load->view('organization/pop-search_org',$data);
+				$this->load->view('organization/searchresults/pop-search_org_result', $data);
+		
+	}
 }

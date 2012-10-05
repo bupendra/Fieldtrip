@@ -43,7 +43,17 @@ class User_model extends MY_Model  {
 		return $query->result();
   }	
   
-  
+     /**
+  *  To search the Users
+  */
+  public function get_search_user(array $data)
+  {
+  		//$sql = "call searchorganization('ABBOTT ELEMENTARY SCHOOL','1','CHICAGO','IL','',0,10)";
+		$sql = "call FindUser(?,?,?,?,?,?,?,?,?,?,?)";
+		$query = $this->db->query($sql,$data);
+       // echo $this->db->last_query();
+		return $query->result();    
+  }	
 
 	/*public function TotalRec()
 	{
