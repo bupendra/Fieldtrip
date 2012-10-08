@@ -1,13 +1,17 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Users extends CI_Controller {
+class Users extends MY_Controller {
 
 	/**
     * Default Constructor
     */   
     public function __construct()
     {
-        parent::__construct();    
+        parent::__construct();
+		if ($this->is_logged_in() == FALSE)
+		{
+		  redirect('administrator');
+		} 
        
         $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . ' GMT');
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
@@ -15,6 +19,7 @@ class Users extends CI_Controller {
         $this->output->set_header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 		
 		$this->load->model('user_model');
+		$this->load->library('pagination');
 		//$this->load->helper('text');
 		//$this->load->library('Ajax_pagination');
     }  
@@ -31,12 +36,31 @@ class Users extends CI_Controller {
 	public function finduser()
 	{
 		$data = array();
+		$uri = $this->uri->segment(3);
+		$offset = ( ! empty($uri) && is_numeric($uri)) ? $uri : 0;
+		$per_page = 30;
 		
 		
-		if($this->input->post('srchUsrBtn'))
+		if($this->input->post('srchUsrBtn') || !empty($uri) || !$offset == 0)
 		{
 			$phoneNo = $this->input->post('txtPhoneArea').$this->input->post('txtPhoneCode').$this->input->post('txtPhone');
 			$faxNo = $this->input->post('txtFaxArea').$this->input->post('txtFaxCode').$this->input->post('txtFax');
+			
+			$user_data_paging = array('Id'   => $this->input->post('txtUsrerId'),
+						   'firstname'    => $this->input->post('txtFirstName'),
+						   'lastname'    => $this->input->post('txtLastName'),
+						   'organizationname'    => $this->input->post('txtOrganizationName'),
+						   'organizationtype' => $this->input->post('orgType_lst'),
+						   'phonehome'    => $phoneNo,
+						   'phonefax'    => $faxNo,
+						   'primaryaddress_city'    => $this->input->post('txtCity'),
+						   'primaryaddress_state' => $this->input->post('selState'),
+						   'primaryaddress_postalcode'    => $this->input->post('txtZipCode'),
+						   'email' => $this->input->post('txtEmailId'),
+						   'pagestart'=>$offset,
+						   'pageend'=>$per_page
+						   );			
+			
 			$user_data = array('Id'   => $this->input->post('txtUsrerId'),
 						   'firstname'    => $this->input->post('txtFirstName'),
 						   'lastname'    => $this->input->post('txtLastName'),
@@ -49,18 +73,31 @@ class Users extends CI_Controller {
 						   'primaryaddress_postalcode'    => $this->input->post('txtZipCode'),
 						   'email' => $this->input->post('txtEmailId')
 						   );
+						   
+			$totRows = $this->user_model->get_search_user_count($user_data);
 								   
-        	$res = $this->user_model->get_search_user($user_data);
+        	$res = $this->user_model->get_search_user($user_data_paging);
 			$data['res'] = $res;
-			/*foreach($res as $r){
-				$data = array();
-				$data['first_name'] = $r->first_name;
-				$data['last_name'] = $r->last_name;
-				$data['primary_address_city'] = $r->primary_address_city;
-				$data['primary_address_state'] = $r->primary_address_state;
-				$data['primary_address_postalcode'] = $r->primary_address_postalcode;
-			}*/
-				$this->load->view("user/usersearch-results",$data);
+			
+			$config = array();
+			$config['base_url']         = site_url('users/finduser');
+			$config['uri_segment'] = 3;
+			$config['total_rows']       = $totRows;
+			$config['per_page']         = $per_page;
+			$config['full_tag_open']    = '<div class="pagination">';
+			$config['full_tag_close']   = '</div>';
+			$config['next_link']        = 'Next &rarr;';
+			$config['prev_link']        = 'Previous &laquo;';
+			$config['cur_tag_open'] =  '<a class="current">';
+			
+
+			$this->pagination->initialize($config);
+
+			$data['totRows'] = $totRows;
+			$data['res'] = $res;
+			$data['pagination'] =  $this->pagination->create_links();
+			
+			$this->load->view("user/searchresults/usersearch-results",$data);
 		
 		
 			}else{

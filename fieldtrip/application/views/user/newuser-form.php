@@ -386,7 +386,7 @@
             <tr class="textBlue clsOrgInfoDet"> 
                 <td colspan="3">&nbsp;</td>
 			</tr>
-             <tr class="textBlue clsOrgInfoDet"> 
+             <tr class="textBlue "> 
                 <td>&nbsp;</td>
                  <td width="2%"></td>
               <td> <input name="Next" type="submit" class="fldBlue" id="Next" value="Next" /></td>

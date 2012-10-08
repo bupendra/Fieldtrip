@@ -79,13 +79,16 @@ class Organization extends MY_Controller {
 				  
 				  
 ?>				
-<!--<script language="javascript" src="<?php echo base_url()?>assets/jquery-accordion/jquery-1.3.1.min.js"></script> -->
+<script language="javascript" src="<?php echo base_url()?>assets/jquery-accordion/jquery-1.3.1.min.js"></script>
 <!--<script type="text/javascript" src="<?php echo base_url()?>assets/fancybox/source/jquery.fancybox.pack.js?v=2.1.0"></script> -->
 	<script language="javascript">	
 		parent.document.frmAddUser.txtOrganisationID.value = '<?php echo $outVal;?>';
 		parent.document.frmAddUser.txtOrganization.value = '<?php echo $this->input->post('orgName_fld');?>';
 		parent.document.frmAddUser.txtOrganisationType.value = '<?php echo $this->input->post('orgType_lst');?>';
+		parent.document.frmAddUser.IdNoOrg.checked = false;
+		$(parent.document).find('.clsOrgInfoDet').show();		
 		parent.$.fancybox.close();
+		
 		/*alert(document.getElementById('lastInsert').id);
 		document.getElementById('lastInsert').innerHTML = 'Upend';
 		alert(document.getElementById('lastInsert').innerHTML);*/

@@ -49,37 +49,25 @@ class User_model extends MY_Model  {
   public function get_search_user(array $data)
   {
   		//$sql = "call searchorganization('ABBOTT ELEMENTARY SCHOOL','1','CHICAGO','IL','',0,10)";
-		$sql = "call FindUser(?,?,?,?,?,?,?,?,?,?,?)";
+		$sql = "call FindUser(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		$query = $this->db->query($sql,$data);
        // echo $this->db->last_query();
 		return $query->result();    
   }	
-
-	/*public function TotalRec()
-	{
-	  $sql = "SELECT * FROM my_friends";
-          $q = $this->db->query($sql);
-          return $q->num_rows();
-       }
- 
-	public function my_friends($perPage)
-	{
-		$offset = $this->getOffset()
-		$query ="SELECT * FROM  my_friends Order By f_id Desc LIMIT ".$offset.", ".$perPage;
-		$q = $this->db->query($query);
-		return $q->result();
-	}
- 
-	public function getOffset()
-	{
-        $page = $this->input->post('page');
-        if(!$page):
-        $offset = 0;
-        else:
-        $offset = $page;
-        endif;
-        return $offset;
-    }*/
+  
+/**
+  *  To Count no. of search organisation
+  */
+  public function get_search_user_count(array $data)
+  {
+  		//$sql = "CALL countsearchorganizations('ABBOTT ELEMENTARY SCHOOL','1','CHICAGO','IL','')";
+		$sql = "call countUserResult(?,?,?,?,?,?,?,?,?,?,?)";
+		$query = $this->db->query($sql, $data);
+        $tot_res = $query->row();	
+        $totRows = $tot_res->tCount;	
+        $query->free_result(); 
+        return $totRows;
+  }
 		
 }
 

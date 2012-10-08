@@ -70,6 +70,8 @@ function AssignToSession(orgID,orgName,orgAccountType){
        parent.document.frmAddUser.txtOrganisationID.value = orgID;
        parent.document.frmAddUser.txtOrganization.value = orgName; 
 	   parent.document.frmAddUser.txtOrganisationType.value = orgAccountType;
+	   parent.document.frmAddUser.IdNoOrg.checked = false;
+	   $(parent.document).find('.clsOrgInfoDet').show()
        return true; 
 }
 </script>
